@@ -58,6 +58,8 @@ kbd{font-family:var(--mono);font-size:.78em;font-weight:500;display:inline-block
 .nav ul{display:flex;gap:22px;margin:0 0 0 auto;padding:0;list-style:none;font-size:15px}
 .nav ul a{text-decoration:none;color:var(--muted);background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .35s var(--ease),color .2s;padding-bottom:2px}
 .nav ul a:hover{color:var(--ink);background-size:100% 1px}
+.lang{font:inherit;font-size:13px;font-weight:600;color:var(--muted);background:none;border:1px solid var(--line-strong);border-radius:999px;padding:.25em .7em;cursor:pointer;transition:color .2s,border-color .2s}
+.lang:hover{color:var(--ink);border-color:var(--ink)}
 
 /* buttons: outlined pill, the app's own "disposition" button */
 .btn{display:inline-flex;align-items:center;gap:10px;font:inherit;font-size:15px;font-weight:600;text-decoration:none;color:var(--ink);background:transparent;border:1.5px solid var(--ink);border-radius:999px;padding:.62em 1.25em;cursor:pointer;transition:background .2s,color .2s,transform .12s}
@@ -251,6 +253,7 @@ footer a:hover{color:var(--ink)}
       <li><a href="#keys" data-i18n="nav.keys">Raccourcis</a></li>
       <li><a href="#download" data-i18n="nav.download">Bientôt</a></li>
     </ul>
+    <button class="lang" id="langBtn" type="button" aria-label="English version">EN</button>
   </div>
 </header>
 
@@ -274,7 +277,7 @@ footer a:hover{color:var(--ink)}
              alt="L’espace de travail haste sur un bureau Windows : cinq fenêtres sombres à fond topographique sur un arrière-plan flouté. En haut, l’explorateur de notes avec deux dossiers et trois notes, et la fenêtre haste avec les cartes Écrire et Consulter. À droite, sur toute la hauteur, un panneau web OSINT Framework. En bas, le brouillon et un terminal PowerShell.">
         <canvas id="shotDither" aria-hidden="true"></canvas>
       </div>
-      <figcaption class="shot-cap"><span data-i18n="hero.cap">Une disposition personnalisée : notes, haste, OSINT Framework, brouillon, terminal.</span><span>Capture réelle, recadrée</span></figcaption>
+      <figcaption class="shot-cap"><span data-i18n="hero.cap">Une disposition personnalisée : notes, haste, OSINT Framework, brouillon, terminal.</span><span data-i18n="hero.cap2">Capture réelle, recadrée</span></figcaption>
     </figure>
   </div>
 </section>
@@ -286,10 +289,10 @@ footer a:hover{color:var(--ink)}
       <h2 class="big" id="introTitle" data-i18n="intro.title">Un endroit où poser une idée, sans quitter ce que vous faisiez.</h2>
       <p class="who" data-i18n="intro.who">Pour tous ceux qui notent quelque chose au milieu d’autre chose : une recherche, un build, un appel. Les notes s’enregistrent seules, et haste se met en retrait quand vous passez à une autre application.</p>
       <dl class="facts">
-        <div><dt data-i18n="f.where">Fonctionne sur</dt><dd>Windows 10 (1809 ou ultérieur) et Windows 11, x64.</dd></div>
-        <div><dt data-i18n="f.data">Vos données</dt><dd>Restent sur votre machine, dans une base SQLite locale. Aucun compte. <code>%LOCALAPPDATA%\QuickNote</code></dd></div>
-        <div><dt data-i18n="f.backup">Sauvegarde</dt><dd>Exportez tout dans un seul fichier <code>.haste</code>, ou gardez des copies horodatées dans un dossier synchronisé comme OneDrive ou Dropbox.</dd></div>
-        <div><dt data-i18n="f.update">Mises à jour</dt><dd>Vérifiées sur GitHub au lancement puis toutes les six heures, installées en un clic.</dd></div>
+        <div><dt data-i18n="f.where">Fonctionne sur</dt><dd data-i18n="f.whereV">Windows 10 (1809 ou ultérieur) et Windows 11, x64.</dd></div>
+        <div><dt data-i18n="f.data">Vos données</dt><dd data-i18n="f.dataV">Restent sur votre machine, dans une base SQLite locale. Aucun compte. <code>%LOCALAPPDATA%\QuickNote</code></dd></div>
+        <div><dt data-i18n="f.backup">Sauvegarde</dt><dd data-i18n="f.backupV">Exportez tout dans un seul fichier <code>.haste</code>, ou gardez des copies horodatées dans un dossier synchronisé comme OneDrive ou Dropbox.</dd></div>
+        <div><dt data-i18n="f.update">Mises à jour</dt><dd data-i18n="f.updateV">Vérifiées sur GitHub au lancement puis toutes les six heures, installées en un clic.</dd></div>
       </dl>
     </div>
   </div>
@@ -341,7 +344,7 @@ footer a:hover{color:var(--ink)}
 
 <section class="workspace" id="workspace" aria-labelledby="wsTitle">
   <div class="wrap">
-    <div class="bar"><span>disposition</span><span data-i18n="ws.bar">grille 12 × 12</span></div>
+    <div class="bar"><span data-i18n="bar.ws">disposition</span><span data-i18n="ws.bar">grille 12 × 12</span></div>
     <div class="ws-head">
       <h2 class="big" id="wsTitle" data-i18n="ws.title">Disposez les fenêtres une fois. Rappelez-les d’une touche.</h2>
       <p data-i18n="ws.body">Activez l’espace de travail : haste rassemble des fenêtres de modules autour de lui, sur une grille. Sept dispositions sont fournies. Dupliquez-les, renommez-les ou dessinez les vôtres, et passez de l’une à l’autre avec <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd>…<kbd>9</kbd>.</p>
@@ -364,16 +367,16 @@ footer a:hover{color:var(--ink)}
 
 <section class="keyset" id="keys" aria-labelledby="keysTitle">
   <div class="wrap">
-    <div class="bar"><span id="keysTitle">raccourcis</span><span data-i18n="k.bar">tout se fait au clavier</span></div>
+    <div class="bar"><span id="keysTitle" data-i18n="bar.keys">raccourcis</span><span data-i18n="k.bar">tout se fait au clavier</span></div>
     <dl class="keylist">
       <div><dt><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>I</kbd></dt><dd data-i18n="k1">Afficher ou masquer haste, depuis n’importe quelle application</dd></div>
       <div><dt><kbd>Ctrl</kbd><kbd>K</kbd></dt><dd data-i18n="k2">Palette de commandes : actions, dispositions, modules, notes</dd></div>
       <div><dt><kbd>W</kbd> <kbd>R</kbd></dt><dd data-i18n="k3">Écrire une note, ou consulter les notes</dd></div>
       <div><dt><kbd>/</kbd></dt><dd data-i18n="k4">Menu de blocs dans une note</dd></div>
       <div><dt><kbd>Ctrl</kbd><kbd>Alt</kbd><kbd>1</kbd>…<kbd>9</kbd></dt><dd data-i18n="k5">Changer de disposition</dd></div>
-      <div><dt><kbd>Ctrl</kbd><kbd>Maj</kbd><kbd>S</kbd></dt><dd data-i18n="k6">Capturer une zone de l’écran</dd></div>
+      <div><dt><kbd>Ctrl</kbd><kbd data-i18n="kbd.shift">Maj</kbd><kbd>S</kbd></dt><dd data-i18n="k6">Capturer une zone de l’écran</dd></div>
       <div><dt><kbd>Alt</kbd><kbd>←</kbd></dt><dd data-i18n="k7">Revenir à la page précédente après avoir suivi un lien</dd></div>
-      <div><dt><kbd>Échap</kbd></dt><dd data-i18n="k8">Revenir en arrière, puis masquer</dd></div>
+      <div><dt><kbd data-i18n="kbd.esc">Échap</kbd></dt><dd data-i18n="k8">Revenir en arrière, puis masquer</dd></div>
       <div><dt><kbd>F1</kbd></dt><dd data-i18n="k9">Aide intégrée, avec recherche</dd></div>
       <div><dt><span class="muted" data-i18n="k10t">double-clic sur une barre de titre</span></dt><dd data-i18n="k10">Loupe : la fenêtre occupe tout l’écran, puis revient</dd></div>
     </dl>
@@ -393,7 +396,7 @@ footer a:hover{color:var(--ink)}
 
 <section class="download" id="download" aria-labelledby="dlTitle">
   <div class="wrap">
-    <div class="bar"><span>télécharger</span><span data-i18n="d.bar">bientôt disponible</span></div>
+    <div class="bar"><span data-i18n="bar.dl">télécharger</span><span data-i18n="d.bar">bientôt disponible</span></div>
     <div class="dl-grid">
       <h2 class="big" id="dlTitle" data-i18n="d.title">Pas encore téléchargeable. Bientôt.</h2>
       <div class="dl-side">
@@ -434,10 +437,28 @@ const shot = $('#shot');
 document.querySelectorAll('img[data-shot]').forEach(i=>i.src=shot.src);
 $('#year').textContent = new Date().getFullYear();
 
-/* i18n: le français est dans le balisage. Pour une autre langue : I18N.en = {clé:"…"} puis setLang('en'). */
-const I18N = {};
-window.setLang = l => { const d=I18N[l]; if(!d) return; document.documentElement.lang=l;
-  document.querySelectorAll('[data-i18n]').forEach(e=>{ const v=d[e.dataset.i18n]; if(v!=null) e.innerHTML=v; }); };
+/* i18n: French lives in the markup and is captured at load; English below.
+   Language = saved choice, else the computer's language (fr → French, anything else → English). */
+const I18N={fr:{},en:{"nav.product": "Product", "nav.features": "Features", "nav.workspace": "Workspace", "nav.keys": "Shortcuts", "nav.download": "Coming soon", "hero.lede": "Open. Write.<br>Find. Close.", "hero.body": "A fast, minimal notes app for Windows, surrounded by a multi-window workspace you arrange yourself. One shortcut brings it up over any app. The same shortcut puts it away.", "cta.soon": "Coming soon to Windows", "cta.discord": "Join the Discord", "hero.cap": "A custom layout: notes, haste, OSINT Framework, scratchpad, terminal.", "hero.cap2": "Real screenshot, cropped", "intro.bar": "what it is", "intro.title": "A place to put a thought down, without leaving what you were doing.", "intro.who": "For anyone who writes things down in the middle of something else: a search, a build, a call. Notes save on their own, and haste steps back when you switch to another app.", "f.where": "Runs on", "f.whereV": "Windows 10 (1809 or later) and Windows 11, x64.", "f.data": "Your data", "f.dataV": "Stays on your machine, in a local SQLite database. No account. <code>%LOCALAPPDATA%\\QuickNote</code>", "f.backup": "Backup", "f.backupV": "Export everything to a single <code>.haste</code> file, or keep timestamped copies in a synced folder like OneDrive or Dropbox.", "f.update": "Updates", "f.updateV": "Checked against GitHub at launch and every six hours, installed in one click.", "feat.bar": "one screenshot, up close", "s1.tag": "The main window", "s1.body": "Two cards and nothing else: <em>Écrire</em> to write a new note, <em>Consulter</em> to look through the ones you have. Press <kbd>W</kbd> or <kbd>R</kbd>; the selected card gets the white outline. Notes save as you type.", "s1.more": "Underneath: what’s new, the layout editor and settings. The footer says it all: <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd> to open, <kbd>Esc</kbd> to hide.", "s2.tag": "The explorer", "s2.body": "Folders with their note count, and notes kept outside any folder, newest first, with how long ago they changed. The filter at the top also reads <span class=\"mark-red\">#tags</span>; the two buttons beside it make a note or a folder.", "s2.more": "Drag and drop, pinning, colours and icons per note. Deleted notes go to the trash first.", "s4.tag": "The scratchpad", "s4.body": "Paste handles, links and leads as they come; it saves on its own. Four buttons: <em>Copier</em> copies it all, <em>Indicateurs</em> pulls out the links, emails, domains, IP addresses and usernames, <em>Vider</em> clears it, <em>En faire une note</em> turns it into a note.", "s6.tag": "A shell in the frame", "s6.body": "A PowerShell or cmd session that stays open between uses, with its working directory on top. <kbd>↑</kbd> <kbd>↓</kbd> walk the history; <em>Effacer</em> clears the screen, <em>Redémarrer</em> starts a fresh session.", "s5.title": "osint framework", "s5.tag": "A web panel", "s5.body": "osintframework.com in dark mode, with its own address bar, back, reload, home and bookmarks. Any site can live in a window the same way: Discord, Slack, Spotify, GitHub, Claude or ChatGPT. Sign in once and every window shares the session.", "s5.more": "The camera icon captures the page with its address and time, and logs it to the “Journal d’audit” note you can see in the explorer.", "bar.ws": "layout", "ws.bar": "12 × 12 grid", "ws.title": "Arrange the windows once. Call them back with one key.", "ws.body": "Turn on the workspace and haste gathers module windows around itself, on a grid. Seven layouts come built in. Duplicate them, rename them or draw your own, and switch with <kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>1</kbd>…<kbd>9</kbd>.", "ws.toggle": "Show the real screen", "m1.t": "Molds", "m1.b": "Drag a window by its title bar and a 3 × 2 grid of molds appears. Drop it in a free one and it takes that shape. Drop it on another window and they swap.", "m2.t": "Neighbours make room", "m2.b": "Pull an edge or a corner and the windows next to it step back, down to their minimum size.", "m3.t": "A “+” in every gap", "m3.b": "Empty space shows a “+”. Click it to fill the gap with a new window and pick its module.", "bar.keys": "shortcuts", "k.bar": "keyboard first", "k1": "Show or hide haste, from any app", "k2": "Command palette: actions, layouts, modules, notes", "k3": "Write a note, or read through them", "k4": "Block menu inside a note", "k5": "Switch layout", "k6": "Capture an area of the screen", "k7": "Back to the previous page after following a link", "k8": "Go back, then hide", "k9": "Built-in help, with search", "k10t": "double-click a title bar", "k10": "Magnify that window to full screen, then back", "kbd.shift": "Shift", "kbd.esc": "Esc", "p.title": "Out of the way until you need it.", "p.body": "Click outside and haste hides. Switch apps and it steps back so it never covers your work. The window you are using stays on top, and the topographic lines behind every panel stay still. Animations and sounds can be turned off.", "bar.dl": "download", "d.bar": "coming soon", "d.title": "Not downloadable yet. Soon.", "d.os": "System", "d.arch": "Architecture", "d.web": "Web modules", "d.webv": "Microsoft Edge WebView2, preinstalled", "d.file": "Release", "d.filev": "Announced on Discord", "d.beta": "Beta", "d.betav": "Applications opening soon", "d.cta": "Join the Discord server", "d.note": "The release date and beta-tester applications will be announced on the Discord server. Once installed, haste will keep itself up to date.", "foot.tag": "notes for Windows, local-first"}};
+const META={
+ fr:{title:document.title,desc:document.querySelector('meta[name=description]').content,alt:shot.alt,top:'haste, retour en haut',switchTo:'English version',
+     variants:'Les cent façons dont le logo haste s’écrit',tabs:'Dispositions',foot:'Pied de page'},
+ en:{title:'haste — notes for Windows, in a workspace you arrange',desc:'haste is a fast, minimal notes app for Windows, surrounded by a multi-window workspace. Everything stays local. One shortcut to open, the same to close.',
+     alt:'The haste workspace on a Windows desktop: five dark windows with topographic backgrounds over a blurred backdrop. Top: the notes explorer with two folders and three notes, and the haste window with the Écrire and Consulter cards. Right, full height: an OSINT Framework web panel. Bottom: the scratchpad and a PowerShell terminal.',
+     top:'haste, back to top',switchTo:'Version française',variants:'The hundred ways the haste wordmark types itself',tabs:'Layouts',foot:'Footer'}};
+document.querySelectorAll('[data-i18n]').forEach(e=>I18N.fr[e.dataset.i18n]=e.innerHTML);
+let LANG='fr';
+window.setLang=l=>{ LANG=l=I18N[l]?l:'en'; const d=I18N[l],m=META[l];
+  document.querySelectorAll('[data-i18n]').forEach(e=>{ const v=d[e.dataset.i18n]; if(v!=null) e.innerHTML=v; });
+  document.documentElement.lang=l; document.title=m.title; document.querySelector('meta[name=description]').content=m.desc;
+  shot.alt=m.alt; document.querySelector('.logo').setAttribute('aria-label',m.top);
+  varEl&&varEl.setAttribute('aria-label',m.variants); document.querySelector('#tabs').setAttribute('aria-label',m.tabs);
+  document.querySelector('footer nav').setAttribute('aria-label',m.foot);
+  const b=document.querySelector('#langBtn'); b.textContent=l==='fr'?'EN':'FR'; b.setAttribute('aria-label',m.switchTo); b.lang=l==='fr'?'en':'fr';
+  if(window.__relang) window.__relang(); };
+function initialLang(){ try{ const s=localStorage.getItem('haste-lang'); if(s) return s; }catch(e){}
+  const l=(navigator.languages&&navigator.languages[0])||navigator.language||'en'; return /^fr\b/i.test(l)?'fr':'en'; }
+document.querySelector('#langBtn').onclick=()=>{ const n=LANG==='fr'?'en':'fr'; try{ localStorage.setItem('haste-lang',n);}catch(e){} setLang(n); };
 
 /* nav state */
 const nav=$('#nav'); const onScroll=()=>nav.classList.toggle('scrolled',scrollY>8);
@@ -548,34 +569,34 @@ new ResizeObserver(()=>frameTo(cur)).observe(viewer);
 
 /* ---------- layouts, from LayoutPresets in WorkspaceSettings.cs ---------- */
 const LAYOUTS=[
- ['Perso','L’écran ci-dessus : notes et haste en haut, OSINT Framework sur toute la hauteur, le brouillon et un terminal en bas.',
+ [{fr:'Perso',en:'Custom'},{fr:'L’écran ci-dessus : notes et haste en haut, OSINT Framework sur toute la hauteur, le brouillon et un terminal en bas.',en:'The screen above: notes and haste on top, OSINT Framework full height, the scratchpad and a terminal below.'},
    [['notes',0,0,3,7],['haste',3,0,6,7,1],['osint framework',9,0,3,12],['brouillon',0,7,3,5],['terminal',3,7,6,5]],true],
- ['Main','haste et l’explorateur de notes en haut ; les quatre autres cases restent libres, chacune avec un « + ».',
+ ['Main',{fr:'haste et l’explorateur de notes en haut ; les quatre autres cases restent libres, chacune avec un « + ».',en:'haste and the notes explorer on top; the four other cells stay free, each with a “+”.'},
    [['notes',0,0,4,6],['haste',4,0,4,6,1],['+',8,0,4,6,2],['+',0,6,4,6,2],['+',4,6,4,6,2],['+',8,6,4,6,2]]],
- ['Haste','haste au centre, notes et rappels autour, le brouillon à gauche et OSINT Framework en grand.',
+ ['Haste',{fr:'haste au centre, notes et rappels autour, le brouillon à gauche et OSINT Framework en grand.',en:'haste in the middle, notes and reminders around it, the scratchpad on the left and OSINT Framework large.'},
    [['notes',0,0,4,5],['haste',4,0,4,5,1],['rappels',8,0,4,5],['brouillon',0,5,4,7],['osint framework',4,5,8,7]]],
- ['OSINT','Pour la recherche : OSINT Framework, Overpass Turbo pour les cartes, et un brouillon pour les pistes.',
+ ['OSINT',{fr:'Pour la recherche : OSINT Framework, Overpass Turbo pour les cartes, et un brouillon pour les pistes.',en:'For research: OSINT Framework, Overpass Turbo for maps, and a scratchpad for leads.'},
    [['haste',0,0,4,6,1],['brouillon',0,6,4,6],['osint framework',4,0,5,12],['overpass turbo',9,0,3,7],['fenêtre libre',9,7,3,5,2]]],
- ['SOCIAL','Discord en grand, haste, et la musique : Spotify, Deezer, YouTube Music ou YouTube.',
+ ['SOCIAL',{fr:'Discord en grand, haste, et la musique : Spotify, Deezer, YouTube Music ou YouTube.',en:'Discord large, haste, and music from Spotify, Deezer, YouTube Music or YouTube.'},
    [['discord',0,0,8,12],['haste',8,0,4,5,1],['musique',8,5,4,7]]],
- ['FOCUS','L’explorateur de notes à gauche, haste au centre, la liste à faire en dessous.',
+ ['FOCUS',{fr:'L’explorateur de notes à gauche, haste au centre, la liste à faire en dessous.',en:'The notes explorer on the left, haste in the centre, the to-do list underneath.'},
    [['notes',0,0,3,12],['haste',3,0,6,7,1],['à faire',3,7,6,5],['fenêtre libre',9,0,3,12,2]]],
- ['DOOMSCROLL','YouTube Shorts, TikTok, YouTube et une vidéo Subway Surfers. haste dans un coin, pour la seule idée à garder.',
+ ['DOOMSCROLL',{fr:'YouTube Shorts, TikTok, YouTube et une vidéo Subway Surfers. haste dans un coin, pour la seule idée à garder.',en:'YouTube Shorts, TikTok, YouTube and a Subway Surfers video. haste in the corner, for the one thought worth keeping.'},
    [['youtube shorts',0,0,3,12],['tiktok',3,0,3,12],['youtube',6,0,3,7],['subway surfers',6,7,3,5],['haste',9,0,3,6,1],['fenêtre libre',9,6,3,6,2]]],
- ['WEBFRONT VIBECODE','Un assistant IA, GitHub, YouTube et un terminal, autour de haste.',
+ ['WEBFRONT VIBECODE',{fr:'Un assistant IA, GitHub, YouTube et un terminal, autour de haste.',en:'An AI assistant, GitHub, YouTube and a terminal, around haste.'},
    [['assistant ia',0,0,4,12],['haste',4,0,4,5,1],['github',4,5,4,7],['youtube',8,0,4,5],['terminal',8,5,4,7]]]
 ];
 const tabs=$('#tabs'),board=$('#board'),desc=$('#wsDesc'),tog=$('#realToggle');
 const cellEls=[];
 LAYOUTS.forEach((L,i)=>{ const b=document.createElement('button'); b.className='tab'; b.type='button'; b.role='tab';
-  b.textContent=L[0]; b.id='tab'+i; b.setAttribute('aria-selected',i===0); b.tabIndex=i===0?0:-1;
+  b.textContent=typeof L[0]==='string'?L[0]:L[0][LANG]; b.id='tab'+i; b.setAttribute('aria-selected',i===0); b.tabIndex=i===0?0:-1;
   b.onclick=()=>pick(i); tabs.append(b); });
 tabs.addEventListener('keydown',e=>{ const t=[...tabs.children],i=t.indexOf(document.activeElement);
   if(e.key==='ArrowRight'||e.key==='ArrowLeft'){ e.preventDefault(); const n=(i+(e.key==='ArrowRight'?1:-1)+t.length)%t.length; t[n].focus(); pick(n);} });
-function pick(i){
+var pick=function(i){
   const L=LAYOUTS[i]; [...tabs.children].forEach((t,k)=>{ t.setAttribute('aria-selected',k===i); t.tabIndex=k===i?0:-1; });
   board.setAttribute('aria-labelledby','tab'+i);
-  desc.textContent=L[1];
+  desc.textContent=L[1][LANG];
   L[2].forEach((c,k)=>{ let el=cellEls[k]; if(!el){ el=document.createElement('div'); el.className='cell'; el.append(document.createElement('div')); board.insertBefore(el,board.querySelector('.real')); cellEls[k]=el; }
     el.hidden=false; el.className='cell'+(c[5]===1?' main':c[5]===2?' free':'');
     Object.assign(el.style,{left:c[1]/12*100+'%',top:c[2]/12*100+'%',width:c[3]/12*100+'%',height:c[4]/12*100+'%'});
@@ -584,6 +605,9 @@ function pick(i){
   tog.disabled=!L[3]; if(!L[3]){ tog.setAttribute('aria-pressed','false'); board.classList.remove('show-real'); }
 }
 tog.onclick=()=>{ const on=tog.getAttribute('aria-pressed')!=='true'; tog.setAttribute('aria-pressed',on); board.classList.toggle('show-real',on); };
+let picked=0; const _pick=pick; pick=i=>{picked=i;_pick(i);};
+window.__relang=()=>{ [...tabs.children].forEach((t,k)=>{const n=LAYOUTS[k][0]; t.textContent=typeof n==='string'?n:n[LANG];}); _pick(picked); };
+setLang(initialLang());
 pick(0);
 })();
 </script>
