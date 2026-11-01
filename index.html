@@ -66,6 +66,7 @@ kbd{font-family:var(--mono);font-size:.78em;font-weight:500;display:inline-block
 .btn svg{transition:transform .3s var(--ease)}
 .btn:hover svg{transform:translateY(2px)}
 .btn.small{font-size:14px;padding:.45em 1em}
+.soon{display:inline-flex;align-items:center;gap:8px;font-size:15px;font-weight:600;color:var(--muted);border:1.5px dashed var(--line-strong);border-radius:999px;padding:.62em 1.25em;cursor:default}
 .btn.solid{background:var(--ink);color:var(--bg)}
 .btn.solid:hover{background:transparent;color:var(--ink)}
 
@@ -248,7 +249,7 @@ footer a:hover{color:var(--ink)}
       <li><a href="#features" data-i18n="nav.features">Fonctionnalités</a></li>
       <li><a href="#workspace" data-i18n="nav.workspace">Espace de travail</a></li>
       <li><a href="#keys" data-i18n="nav.keys">Raccourcis</a></li>
-      <li><a href="#download" data-i18n="nav.download">Télécharger</a></li>
+      <li><a href="#download" data-i18n="nav.download">Bientôt</a></li>
     </ul>
   </div>
 </header>
@@ -262,9 +263,9 @@ footer a:hover{color:var(--ink)}
     <div class="hero-copy in d2">
       <p data-i18n="hero.body">Une application de notes pour Windows, rapide et minimaliste, entourée d’un espace de travail multi-fenêtres que vous disposez vous-même. Un raccourci l’affiche par-dessus n’importe quelle application. Le même raccourci la fait disparaître.</p>
       <div class="cta-row">
-        <a class="btn" href="https://github.com/LoFieee/Haste-Releases/releases" rel="noopener" target="_blank"><span data-i18n="cta.download">Télécharger pour Windows</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 1v9M2 6.5 6 10l4-3.5"/></svg></a>
-        <span class="hint"><kbd>Ctrl</kbd>+<kbd>Alt</kbd>+<kbd>I</kbd><span data-i18n="hero.hint">&nbsp;pour ouvrir</span></span>
+        <span class="soon" aria-disabled="true" data-i18n="cta.soon">Bientôt sur Windows</span>
+        <a class="btn" href="https://discord.gg/ZVhsTrKRes" rel="noopener" target="_blank"><span data-i18n="cta.discord">Rejoindre le Discord</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
       </div>
     </div>
     <figure class="shot-stage in d3" style="margin-left:0;margin-right:0;margin-bottom:0">
@@ -392,19 +393,20 @@ footer a:hover{color:var(--ink)}
 
 <section class="download" id="download" aria-labelledby="dlTitle">
   <div class="wrap">
-    <div class="bar"><span>télécharger</span><span data-i18n="d.bar">Windows uniquement</span></div>
+    <div class="bar"><span>télécharger</span><span data-i18n="d.bar">bientôt disponible</span></div>
     <div class="dl-grid">
-      <h2 class="big" id="dlTitle" data-i18n="d.title">Installez-le, puis appuyez sur <span class="keys-inline"><kbd>Ctrl</kbd> + <kbd>Alt</kbd> + <kbd>I</kbd></span></h2>
+      <h2 class="big" id="dlTitle" data-i18n="d.title">Pas encore téléchargeable. Bientôt.</h2>
       <div class="dl-side">
         <ul>
           <li><span data-i18n="d.os">Système</span><span>Windows 10 1809+ · Windows 11</span></li>
           <li><span data-i18n="d.arch">Architecture</span><span>x64</span></li>
           <li><span data-i18n="d.web">Modules web</span><span data-i18n="d.webv">Microsoft Edge WebView2, préinstallé</span></li>
-          <li><span data-i18n="d.file">Installeur</span><span><code style="font-family:var(--mono);font-size:.9em">Haste-Setup.exe</code></span></li>
+          <li><span data-i18n="d.file">Sortie</span><span data-i18n="d.filev">Annoncée sur Discord</span></li>
+          <li><span data-i18n="d.beta">Bêta</span><span data-i18n="d.betav">Candidatures bientôt ouvertes</span></li>
         </ul>
-        <a class="btn solid" href="https://github.com/LoFieee/Haste-Releases/releases" rel="noopener" target="_blank"><span data-i18n="d.cta">Télécharger sur GitHub Releases</span>
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M6 1v9M2 6.5 6 10l4-3.5"/></svg></a>
-        <p class="dl-note" data-i18n="d.note">Les versions sont publiées sur GitHub. Une fois installé, haste se met à jour tout seul.</p>
+        <a class="btn solid" href="https://discord.gg/ZVhsTrKRes" rel="noopener" target="_blank"><span data-i18n="d.cta">Rejoindre le serveur Discord</span>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M3 9 9 3M4 3h5v5"/></svg></a>
+        <p class="dl-note" data-i18n="d.note">La date de sortie et l’ouverture des candidatures pour la bêta seront annoncées sur le serveur Discord. Une fois installé, haste se mettra à jour tout seul.</p>
       </div>
     </div>
     <p class="endmark" aria-hidden="true">haste</p>
@@ -418,7 +420,7 @@ footer a:hover{color:var(--ink)}
     <nav aria-label="Pied de page">
       <a href="#features" data-i18n="nav.features">Fonctionnalités</a>
       <a href="#workspace" data-i18n="nav.workspace">Espace de travail</a>
-      <a href="https://github.com/LoFieee/Haste-Releases/releases" rel="noopener" target="_blank">GitHub Releases</a>
+      <a href="https://discord.gg/ZVhsTrKRes" rel="noopener" target="_blank">Discord</a>
     </nav>
     <span>© <span id="year">2026</span> haste</span>
   </div>
